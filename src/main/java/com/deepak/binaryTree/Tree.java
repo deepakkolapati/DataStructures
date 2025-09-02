@@ -1,7 +1,37 @@
 package com.deepak.binaryTree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
 public class Tree {
     TreeNode root;
+
+    public void insert(){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter the no of levels in the tree: ");
+        int n = sc.nextInt();
+        n = (int)(Math.pow(2,n)) - 1;
+        Queue<TreeNode> q = new LinkedList<>();
+        while(n > 0){
+            System.out.print("Enter the value of node: ");
+            String val = sc.next();
+            if(val.equals("-")){
+                q.add(null);
+            }
+            else{
+                int newVal = Integer.parseInt(val);
+                q.add(new TreeNode(newVal));
+            }
+            n--;
+            System.out.println();
+        }
+//        System.out.println(q);
+        while(!q.isEmpty()){
+
+        }
+
+    }
 
     public boolean hasPathSum(TreeNode root, int targetSum) {
     /**   Given the root of a binary tree and an integer targetSum,
