@@ -1,10 +1,10 @@
 package com.deepak.linkedList;
 
-public class Node {
-    int val;
+public class Node<T> {
+    T val;
     Node next;
 
-    Node(int val){
+    Node(T val){
         this.val = val;
     }
 }
