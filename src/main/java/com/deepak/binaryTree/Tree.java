@@ -1,16 +1,65 @@
 package com.deepak.binaryTree;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Scanner;
+import java.util.*;
 
-public class Tree {
+public class Tree<T> {
     TreeNode root;
 
-    public void insert(){
+    public void insertTreeNode(T val){
+
+    }
+
+    public void createTree(){
         Scanner sc = new Scanner(System.in);
+        String input = sc.next();
+        String[] nodesStr = input.split(",");
+        List<TreeNode<T>> nodes = new LinkedList<>();
+        for(String str: nodesStr){
+            if(str.equals("null")){
+               nodes.add(null);
+            }
+            else{
+                 TreeNode<T> curr=  new TreeNode<>((T) str);
+                nodes.add(curr);
+            }
+        }
+        for(int i=0;i< nodes.size();i++){
+            if(root==null && i==0){
+                root = nodes.get(0);
+            }
+            if(nodes.get(i)!=null){
+            if(((2*i)+1)< nodes.size()){
+                nodes.get(i).left = nodes.get(2*i+1);
+            }
+            if(((2*i)+2)< nodes.size()){
+                nodes.get(i).right = nodes.get(2*i+2);
+            }
+            }
 
+        }
+    }
 
+    public void printTreeHelper(TreeNode<T> root){
+        if(root == null){
+            return;
+        }
+        if(root.left!=null){
+            System.out.println(root.val + " left child: " + root.left.val);
+
+        }
+        if(root.right!=null){
+            System.out.println(root.val + " right child: " + root.right.val);
+
+        }
+
+        printTreeHelper(root.left);
+        printTreeHelper(root.right);
+
+    }
+
+    public void printTree(){
+        TreeNode<T> curr = root;
+        printTreeHelper(root);
 
     }
 
